@@ -1,41 +1,37 @@
-import * as React from 'react';
-import {View, Text} from 'react-native';
-import {createStaticNavigation} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
 
-function HomeScreen(){
-  return(
-    <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
-      <Text>Home Screen</Text>
-    </View>
+import "@/global.css";
+
+import { GluestackUIProvider } from "./components/ui/gluestack-ui-provider";
+import ToastProvider from "./components/ui/toast-provider";
+
+import FormsScreen from "./screen/FormsScreen";
+import ProfileScreen from "./screen/ProfileScreen";
+import DisplayScreen from "./screen/DisplayScreen";
+
+
+const Drawer = createDrawerNavigator();
+
+export default function App() {
+  return (
+    <GluestackUIProvider>
+      <ToastProvider>
+        <NavigationContainer>
+          <Drawer.Navigator
+            screenOptions={{
+              headerTitle: "Anahí De la Torre",
+              headerShown: true,
+              headerTintColor: "white",
+              headerStyle: { backgroundColor: "orange" },
+            }}
+          >
+            <Drawer.Screen name="Forms" component={FormsScreen} />
+            <Drawer.Screen name="Profile" component={ProfileScreen} />
+            <Drawer.Screen name="Display" component={DisplayScreen} />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </ToastProvider>
+    </GluestackUIProvider>
   );
-}
-
-function DetailsScreen(){
-  return(
-    <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
-      <Text>HomeScreen</Text>
-    </View>
-  );
-}
-const RooStack = createNativeStackNavigator({
-  initialRouteName: 'Home',
-  screenOptions:{
-    headerStyle:{ backgroundColor: 'tomato'},
-  },
-  screens:{
-    Home:{
-      screen: HomeScreen,
-      options:{
-        title: 'Overview',
-      },
-    },
-    Details: DetailsScreen,
-  },
-});
-
-const Navigation = createStaticNavigation(RooStack);
-
-export default function App(){
-  return <Navigation/>;
 }
