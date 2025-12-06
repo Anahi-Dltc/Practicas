@@ -9,6 +9,9 @@ import ToastProvider from "./components/ui/toast-provider";
 import FormsScreen from "./screen/FormsScreen";
 import ProfileScreen from "./screen/ProfileScreen";
 import DisplayScreen from "./screen/DisplayScreen";
+import CRUDScreen from "./screen/CRUDScreen";
+import EdityelimScreen from "./screen/EdityelimScreen";
+
 
 
 const Drawer = createDrawerNavigator();
@@ -29,6 +32,9 @@ export default function App() {
             <Drawer.Screen name="Forms" component={FormsScreen} />
             <Drawer.Screen name="Profile" component={ProfileScreen} />
             <Drawer.Screen name="Display" component={DisplayScreen} />
+            <Drawer.Screen name="Crear" component={CRUDScreen} />
+            <Drawer.Screen name="Evento" component={EdityelimScreen} />
+
           </Drawer.Navigator>
         </NavigationContainer>
       </ToastProvider>
